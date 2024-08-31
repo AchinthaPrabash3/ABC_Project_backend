@@ -1,12 +1,10 @@
 package com.example.ABC_Project.models;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.Getter;
 
-@Data
+@Getter
 @AllArgsConstructor
-@Document(collection = "users")
 public class LoginModel {
     private String email;
     private String password;

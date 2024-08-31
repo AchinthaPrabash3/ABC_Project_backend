@@ -20,6 +20,7 @@ public class SignupService {
     public boolean signup(SignupModel sModel) {
         List<SignupModel> list = getUsers();
         String email = sModel.getEmail();
+        System.out.println(email);
         boolean isTrue = false;
         boolean isMatching = list.stream().anyMatch(d -> email.equals(d.getEmail()));
         if (list.isEmpty()) {

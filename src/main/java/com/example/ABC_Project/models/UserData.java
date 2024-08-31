@@ -1,23 +1,21 @@
 package com.example.ABC_Project.models;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 
-@Getter
+@Data
 @AllArgsConstructor
 @Document(collection = "users")
-public class SignupModel {
+public class UserData {
+    private ObjectId _id;
     private String email;
     private String username;
     private Integer number;
-    private String location;
     private String address;
-    private String password;
+    private String location;
     private List<String> orders;
-
 }
