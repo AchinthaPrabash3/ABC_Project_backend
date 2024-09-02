@@ -1,26 +1,24 @@
 package com.example.ABC_Project.controllers;
 
-import com.example.ABC_Project.models.LoginModel;
-import com.example.ABC_Project.models.UserData;
-import com.example.ABC_Project.services.LoginService;
+import com.example.ABC_Project.models.ReserveModel;
+import com.example.ABC_Project.services.ReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
-public class LoginController {
+public class ReserveController {
 
     @Autowired
-    LoginService logs;
+    ReserveService res;
 
-    @PostMapping("/users")
-    public List<UserData> getAll(@RequestBody LoginModel sModel) {
-        return logs.verify(sModel);
+    @PostMapping("/reserve")
+    public ArrayList<String> getReserve(@RequestBody ReserveModel resM) {
+        return res.Reserve(resM);
     }
-
 }

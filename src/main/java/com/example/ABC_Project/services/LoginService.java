@@ -26,10 +26,10 @@ public class LoginService {
         String email = sModel.getEmail();
         String password = sModel.getPassword();
         List<UserData> verifiedData = new ArrayList<>();
-        for (int i = 0; i < allData.size() ; i ++){
-           if (email.equals(allData.get(i).getEmail()) & password.equals(allData.get(i).getPassword())){
+        for (int i = 0; i < allData.size(); i++) {
+            if (email.equals(allData.get(i).getEmail()) & password.equals(allData.get(i).getPassword())) {
                 verifiedData.add(UserData.get(i));
-           }
+            }
         }
         return verifiedData;
     }

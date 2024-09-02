@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.List;
 
 @Getter
