@@ -31,13 +31,13 @@ public class StaffService {
     public List<String> StaffLogin(LocationDataModel locM) {
         List<LocationDataModel> allData = LocationR.findAll();
         List<String> list = new ArrayList<>();
-
         for (LocationDataModel allDatum : allData) {
             if (locM.getLocation().equalsIgnoreCase(allDatum.getLocation()) && locM.getPassword().equalsIgnoreCase(allDatum.getPassword())) {
                 list.add(allDatum.getLocation());
                 list.add(String.valueOf(allDatum.get_id()));
             }
         }
+
         return list;
     }
 

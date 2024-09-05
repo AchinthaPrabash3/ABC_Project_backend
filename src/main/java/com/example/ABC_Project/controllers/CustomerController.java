@@ -1,5 +1,6 @@
 package com.example.ABC_Project.controllers;
 
+import com.example.ABC_Project.models.OrderItemsModel;
 import com.example.ABC_Project.models.OrdersModel;
 import com.example.ABC_Project.models.ProductsModel;
 import com.example.ABC_Project.models.ReserveModel;
@@ -25,7 +26,7 @@ public class CustomerController {
     ReserveService reserveService;
 
     @PostMapping("/order")
-    public boolean placeOrder(@RequestBody OrdersModel ordM){
+    public OrdersModel placeOrder(@RequestBody OrdersModel ordM){
         return ordersService.saveOrder(ordM);
     }
 
@@ -37,5 +38,14 @@ public class CustomerController {
     @GetMapping("/products")
     public List<ProductsModel> allProd() {
         return productsService.getAllProducts();
+    }
+
+    @PostMapping("/trackorders")
+    public List<OrdersModel> track(@RequestBody List<String> om){
+       return ordersService.trackOrders(om);
+    }
+    @PostMapping("/cancelorder")
+    public void cancelOrder(@RequestBody OrdersModel om){
+        ordersService.cancelOrder(om);
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Document(collection = "products")
 public class ProductsModel {
-
+    private String _id;
     private String name;
     private int price;
     private String description;
