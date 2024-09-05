@@ -34,24 +34,24 @@ public class ReserveService {
                 filteredDataByLocation.add(allDatum);
             }
         }
-        for (int i = 0; i < filteredDataByLocation.size(); i++) {
-            String date = filteredDataByLocation.get(i).getDate();
+        for (ReserveModel reserveModel : filteredDataByLocation) {
+            String date = reserveModel.getDate();
 
             String[] splitDate = date.split("-");
             ArrayList<Integer> convertToInt = new ArrayList<>();
-            for (int j = 0; j < splitDate.length; j++) {
-                convertToInt.add(Integer.parseInt(splitDate[j]));
+            for (String s : splitDate) {
+                convertToInt.add(Integer.parseInt(s));
             }
             if (reserveDate == convertToInt.getLast()) {
-                seats += filteredDataByLocation.get(i).getPeopleCount();
+                seats += reserveModel.getPeopleCount();
             }
         }
         List<LocationDataModel> allLocationData = Lrepo.findAll();
         int remaining = 0;
-        for (int i = 0; i < allLocationData.size(); i++) {
+        for (LocationDataModel allLocationDatum : allLocationData) {
 
-            if (rmod.getLocation().equalsIgnoreCase(allLocationData.get(i).getLocation())) {
-                remaining = allLocationData.get(i).getSeatCount() - seats;
+            if (rmod.getLocation().equalsIgnoreCase(allLocationDatum.getLocation())) {
+                remaining = allLocationDatum.getSeatCount() - seats;
             }
         }
         return remaining;

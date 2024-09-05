@@ -17,5 +17,4 @@ public class SignupModel {
     private String address;
     private String password;
     private List<String> orders;
-
 }
