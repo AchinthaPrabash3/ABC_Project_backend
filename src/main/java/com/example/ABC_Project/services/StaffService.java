@@ -73,6 +73,7 @@ public class StaffService {
             }
             if (!(convertedData.get(0) < year) && !(convertedData.get(1) < month) && !(convertedData.get(2) < day)) {
                 if (location.equalsIgnoreCase(reserveM.getLocation())) {
+                    System.out.println(reserveM.get_id());
                     filteredData.add(reserveM);
                 }
 

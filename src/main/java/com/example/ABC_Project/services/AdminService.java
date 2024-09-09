@@ -54,6 +54,32 @@ public class AdminService {
         return reserveR.findAll();
     }
 
+    public List<ProductsModel> getAllProd() {
+        return productR.findAll();
+    }
+
+
+    public void updateProd(List<String> items) {
+        String id = items.getFirst();
+        String updateProp = items.get(1);
+        String newValue = items.getLast();
+
+        Query q = new Query();
+        q.addCriteria(Criteria.where("_id").is(id));
+        q.fields().include("_id");
+
+        Update up = new Update();
+        if ("price".equalsIgnoreCase(updateProp)) {
+            int intValue = Integer.parseInt(newValue);
+            up.set(updateProp, intValue);
+        } else {
+            up.set(updateProp, newValue);
+        }
+
+        boolean m = template.updateFirst(q, up, ProductsModel.class).wasAcknowledged();
+        System.out.println(m);
+    }
+
     public List<ReserveModel> newReservations() {
         List<ReserveModel> allReservations = reserveR.findAll();
         List<ReserveModel> filteredReservations = new ArrayList<>();
@@ -155,8 +181,19 @@ public class AdminService {
         boolean m = template.updateFirst(q, up, LocationDataModel.class).wasAcknowledged();
         return m;
     }
-    public void addNewProduct(ProductsModel podM){
-       ProductsModel prod =  productR.save(podM);
-       return ;
+
+    public boolean addNewProduct(ProductsModel podM) {
+        ProductsModel prod = productR.save(podM);
+        return prod.get_id() != null;
+    }
+
+    public boolean deleteProduct(ProductsModel prodM) {
+        try {
+            productR.deleteById(prodM.get_id());
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
     }
 }

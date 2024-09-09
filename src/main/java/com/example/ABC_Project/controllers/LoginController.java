@@ -22,5 +22,13 @@ public class LoginController {
     public List<UserData> getAll(@RequestBody LoginModel sModel) {
         return logs.verify(sModel);
     }
+    @PostMapping("/upuserprod")
+    public boolean updateUserProd( @RequestBody List<String> data){
+        return logs.updateUserDetails(data);
+    }
+    @PostMapping("/upuserres")
+    public boolean updateUserRes( @RequestBody List<String> data){
+        return logs.updateUserReservations(data);
+    }
 
 }

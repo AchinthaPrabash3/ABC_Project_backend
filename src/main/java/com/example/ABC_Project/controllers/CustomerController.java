@@ -1,9 +1,9 @@
 package com.example.ABC_Project.controllers;
 
-import com.example.ABC_Project.models.OrderItemsModel;
 import com.example.ABC_Project.models.OrdersModel;
 import com.example.ABC_Project.models.ProductsModel;
 import com.example.ABC_Project.models.ReserveModel;
+import com.example.ABC_Project.models.UserData;
 import com.example.ABC_Project.services.OrdersService;
 import com.example.ABC_Project.services.ProductsService;
 import com.example.ABC_Project.services.ReserveService;
@@ -26,7 +26,7 @@ public class CustomerController {
     ReserveService reserveService;
 
     @PostMapping("/order")
-    public OrdersModel placeOrder(@RequestBody OrdersModel ordM){
+    public OrdersModel placeOrder(@RequestBody OrdersModel ordM) {
         return ordersService.saveOrder(ordM);
     }
 
@@ -41,11 +41,32 @@ public class CustomerController {
     }
 
     @PostMapping("/trackorders")
-    public List<OrdersModel> track(@RequestBody List<String> om){
-       return ordersService.trackOrders(om);
+    public List<OrdersModel> track(@RequestBody List<String> om) {
+        return ordersService.trackOrders(om);
     }
+
     @PostMapping("/cancelorder")
-    public void cancelOrder(@RequestBody OrdersModel om){
+    public void cancelOrder(@RequestBody OrdersModel om) {
         ordersService.cancelOrder(om);
+    }
+
+    @GetMapping("/locations")
+    public List<String> locationInfo() {
+        return ordersService.getLocations();
+    }
+
+    @PostMapping("/cancelres")
+    public void cancelRes(@RequestBody ReserveModel resM) {
+        reserveService.cancelReserve(resM);
+    }
+
+    @PostMapping("/getuserorders")
+    public List<OrdersModel> getUserOrders(@RequestBody UserData userData) {
+        return ordersService.getUserOrders(userData);
+    }
+
+    @PostMapping("/getuserres")
+    public List<ReserveModel> getUserRes(@RequestBody UserData userData) {
+        return reserveService.getUserRes(userData);
     }
 }

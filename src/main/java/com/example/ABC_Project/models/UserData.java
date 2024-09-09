@@ -11,12 +11,12 @@ import java.util.List;
 @AllArgsConstructor
 @Document(collection = "users")
 public class UserData {
-    private ObjectId _id;
+    private String _id;
     private String email;
     private String username;
     private Integer number;
     private String address;
     private String location;
     private List<String> orders;
-    private List<String> reserves;
+    private List<String> reservations;
 }

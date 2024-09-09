@@ -10,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @Document(collection = "users")
 public class SignupModel {
+    private String _id;
     private String email;
     private String username;
     private Integer number;
@@ -17,4 +18,5 @@ public class SignupModel {
     private String address;
     private String password;
     private List<String> orders;
+    private List<String> reservations;
 }

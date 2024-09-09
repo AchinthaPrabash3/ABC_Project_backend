@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @Document(collection = "orders")
 public class OrdersModel {
-    @Id
     private String _id;
     private Integer total;
     private Integer delivary;

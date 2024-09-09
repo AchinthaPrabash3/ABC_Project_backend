@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @Document(collection = "reservations")
 public class ReserveModel {
-    private ObjectId _id;
+    private String _id;
     private String email;
     private String name;
     private String location;
