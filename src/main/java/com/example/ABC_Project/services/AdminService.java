@@ -2,7 +2,7 @@ package com.example.ABC_Project.services;
 
 import com.example.ABC_Project.LocationDataRepo;
 import com.example.ABC_Project.OrderRepo;
-import com.example.ABC_Project.Productsrepo;
+import com.example.ABC_Project.ProductsRepo;
 import com.example.ABC_Project.ReserveRepo;
 import com.example.ABC_Project.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class AdminService {
     ReserveRepo reserveR;
 
     @Autowired
-    Productsrepo productR;
+    ProductsRepo productR;
 
 
     LocalDate date = LocalDate.now();
@@ -59,7 +59,7 @@ public class AdminService {
     }
 
 
-    public void updateProd(List<String> items) {
+    public boolean updateProd(List<String> items) {
         String id = items.getFirst();
         String updateProp = items.get(1);
         String newValue = items.getLast();
@@ -77,7 +77,7 @@ public class AdminService {
         }
 
         boolean m = template.updateFirst(q, up, ProductsModel.class).wasAcknowledged();
-        System.out.println(m);
+        return m;
     }
 
     public List<ReserveModel> newReservations() {

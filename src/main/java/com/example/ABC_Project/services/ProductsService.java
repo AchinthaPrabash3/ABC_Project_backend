@@ -1,6 +1,6 @@
 package com.example.ABC_Project.services;
 
-import com.example.ABC_Project.Productsrepo;
+import com.example.ABC_Project.ProductsRepo;
 import com.example.ABC_Project.models.ProductsModel;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,9 @@ import java.util.List;
 @Component
 public class ProductsService {
     @Autowired
-    Productsrepo prepo;
-
+    ProductsRepo productsrepo;
 
     public List<ProductsModel> getAllProducts(){
-        return  prepo.findAll();
+        return  productsrepo.findAll();
     }
 }

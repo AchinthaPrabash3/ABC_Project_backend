@@ -16,10 +16,10 @@ import java.util.List;
 @Component
 public class ReserveService {
     @Autowired
-    ReserveRepo repo;
+    ReserveRepo reserveRepo;
 
     @Autowired
-    LocationDataRepo Lrepo;
+    LocationDataRepo locationDataRepo;
 
     @Autowired
     private SignupRepo signupRepo;
@@ -33,7 +33,7 @@ public class ReserveService {
 
     public Integer manageSeats(ReserveModel rmod, int reserveDate) {
 
-        List<ReserveModel> allData = repo.findAll();
+        List<ReserveModel> allData = reserveRepo.findAll();
         List<ReserveModel> filteredDataByLocation = new ArrayList<>();
         for (ReserveModel allDatum : allData) {
             if (rmod.getLocation().equals(allDatum.getLocation())) {
@@ -52,7 +52,7 @@ public class ReserveService {
                 seats += reserveModel.getPeopleCount();
             }
         }
-        List<LocationDataModel> allLocationData = Lrepo.findAll();
+        List<LocationDataModel> allLocationData = locationDataRepo.findAll();
         int remaining = 0;
         for (LocationDataModel allLocationDatum : allLocationData) {
 
@@ -75,7 +75,7 @@ public class ReserveService {
         if (!(reserveDataInt.get(0) < year) && !(reserveDataInt.get(1) < month) && !(reserveDataInt.get(2) < day)) {
             int remaining = manageSeats(resM, reserveDataInt.getLast());
             if (!(resM.getPeopleCount() > remaining)) {
-                ReserveModel res = repo.save(resM);
+                ReserveModel res = reserveRepo.save(resM);
                 seats = 0;
                 message.add("you have booked " + resM.getPeopleCount() + " seats");
                 message.add(res.get_id());
@@ -102,8 +102,8 @@ public class ReserveService {
         System.out.println(id);
         if (id != null) {
             try {
-                repo.deleteById(id);
-                boolean m = repo.findById(id).isPresent();
+                reserveRepo.deleteById(id);
+                boolean m = reserveRepo.findById(id).isPresent();
                 System.out.println(m);
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -118,7 +118,7 @@ public class ReserveService {
         List<ReserveModel> reserves = new ArrayList<>();
         if (id != null) {
             List<String> reserveArray = signupRepo.findById(id).get().getReservations();
-            List<ReserveModel> allReserves = repo.findAll();
+            List<ReserveModel> allReserves = reserveRepo.findAll();
             for (String ReserveID : reserveArray) {
                 for (ReserveModel res : allReserves) {
                     if (ReserveID.equals(res.get_id())) {

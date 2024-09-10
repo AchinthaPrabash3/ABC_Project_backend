@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class SignupController {
 
     @Autowired
-    SignupService service;
+    private SignupService service;
 
     @PostMapping("/signup")
     public boolean adduser(@RequestBody SignupModel model) {

@@ -4,7 +4,6 @@ import com.example.ABC_Project.LoginRepo;
 import com.example.ABC_Project.OrderRepo;
 import com.example.ABC_Project.SignupRepo;
 import com.example.ABC_Project.models.LoginModel;
-import com.example.ABC_Project.models.OrdersModel;
 import com.example.ABC_Project.models.SignupModel;
 import com.example.ABC_Project.models.UserData;
 import lombok.extern.slf4j.Slf4j;
@@ -23,15 +22,15 @@ import java.util.Optional;
 @Component
 public class LoginService {
     @Autowired
-    private LoginRepo repo;
+    private LoginRepo loginRepo;
     @Autowired
-    private SignupRepo repo1;
+    private SignupRepo signupRepo;
     @Autowired
     OrderRepo orderRepo;
 
     public List<UserData> verify(LoginModel sModel) {
-        List<SignupModel> allData = repo1.findAll();
-        List<UserData> UserData = repo.findAll();
+        List<SignupModel> allData = signupRepo.findAll();
+        List<UserData> UserData = loginRepo.findAll();
         String email = sModel.getEmail();
         String password = sModel.getPassword();
         List<UserData> verifiedData = new ArrayList<>();
@@ -47,7 +46,7 @@ public class LoginService {
     MongoTemplate template;
 
     public boolean updateUserDetails(List<String> data) {
-        Optional<SignupModel> user = repo1.findById(data.getFirst());
+        Optional<SignupModel> user = signupRepo.findById(data.getFirst());
         if (user.isPresent()) {
             List<String> userOrders = user.get().getOrders();
             String newProdId = data.getLast();
@@ -70,7 +69,7 @@ public class LoginService {
     }
 
     public boolean updateUserReservations(List<String> data) {
-        Optional<SignupModel> user = repo1.findById(data.getFirst());
+        Optional<SignupModel> user = signupRepo.findById(data.getFirst());
         if (user.isPresent()) {
             List<String> userRes = user.get().getReservations();
             String newProdId = data.getLast();

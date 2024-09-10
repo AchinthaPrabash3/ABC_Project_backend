@@ -16,10 +16,10 @@ import java.util.List;
 public class LoginController {
 
     @Autowired
-    LoginService logs;
+    private LoginService logs;
 
     @PostMapping("/users")
-    public List<UserData> getAll(@RequestBody LoginModel sModel) {
+    public List<UserData> verify(@RequestBody LoginModel sModel) {
         return logs.verify(sModel);
     }
     @PostMapping("/upuserprod")

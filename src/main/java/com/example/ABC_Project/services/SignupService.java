@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class SignupService {
     @Autowired
-    SignupRepo sign;
+    private SignupRepo sign;
 
     private List<SignupModel> getUsers() {
         return sign.findAll();

@@ -11,7 +11,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:5173")
 public class AdminController {
     @Autowired
-    AdminService adminS;
+    private AdminService adminS;
 
     @PostMapping("/adminlogin")
     public boolean login(@RequestBody LoginModel logM) {
@@ -79,8 +79,8 @@ public class AdminController {
     }
 
     @PostMapping("/updateprod")
-    public void updateProd(@RequestBody List<String> items) {
-        adminS.updateProd(items);
+    public boolean updateProd(@RequestBody List<String> items) {
+      return adminS.updateProd(items);
     }
 
     @PostMapping("/deleteprod")

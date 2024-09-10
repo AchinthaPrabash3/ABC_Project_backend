@@ -15,19 +15,19 @@ import java.util.List;
 @Component
 public class OrdersService {
     @Autowired
-    OrderRepo repo;
+    OrderRepo orderRepo;
     @Autowired
     LocationDataRepo locationR;
     @Autowired
     SignupRepo signupRepo;
 
     public OrdersModel saveOrder(OrdersModel ordM) {
-        OrdersModel savedOrder = repo.save(ordM);
+        OrdersModel savedOrder = orderRepo.save(ordM);
         return savedOrder;
     }
 
     public List<OrdersModel> trackOrders(List<String> om) {
-        List<OrdersModel> allOrders = repo.findAll();
+        List<OrdersModel> allOrders = orderRepo.findAll();
         List<OrdersModel> trackedOrders = new ArrayList<>();
         for (String orderId : om) {
             for (OrdersModel order : allOrders) {
@@ -41,8 +41,8 @@ public class OrdersService {
 
     public void cancelOrder(OrdersModel om) {
         String id = om.get_id();
-        repo.deleteById(id);
-        boolean m = repo.findById(id).isPresent();
+        orderRepo.deleteById(id);
+        boolean m = orderRepo.findById(id).isPresent();
         System.out.println(m);
     }
 
@@ -57,7 +57,7 @@ public class OrdersService {
 
     public List<OrdersModel> getUserOrders(UserData userData) {
         String id = userData.get_id();
-        List<OrdersModel> allOrders = repo.findAll();
+        List<OrdersModel> allOrders = orderRepo.findAll();
         List<OrdersModel> userOrders = new ArrayList<>();
         if (id != null) {
             List<String> orders = signupRepo.findById(id).get().getOrders();
